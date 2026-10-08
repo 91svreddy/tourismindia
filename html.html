@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#d5ff5c">
+    <meta name="description" content="India, IRL. Pick a side quest, find your people, and make a trip worth talking about.">
+    <title>India IRL — Your next side quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --ink: #19332d;
+    --forest: #173c32;
+    --deep: #102b26;
+    --cream: #f7f5ef;
+    --sand: #e8e3d8;
+    --muted: #73786e;
+    --saffron: #d98e55;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.page-wrap { width: min(1240px, calc(100% - 112px)); margin: 0 auto; }
+.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 12px 18px; transform: translateY(-160%); color: white; background: var(--deep); }
+.skip-link:focus { transform: translateY(0); }
+
+.site-header { position: absolute; z-index: 10; inset: 0 0 auto; color: white; transition: background .25s, color .25s, box-shadow .25s; }
+.site-header.scrolled { position: fixed; color: var(--ink); background: rgba(247,245,239,.96); box-shadow: 0 1px 15px rgba(18,38,31,.08); backdrop-filter: blur(12px); }
+.nav-shell { width: min(1400px, calc(100% - 112px)); height: 88px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; letter-spacing: -.8px; white-space: nowrap; }
+.brand-mark { display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid currentColor; border-radius: 50%; color: var(--saffron); font-size: 17px; }
+.brand-light { font-weight: 400; }
+.nav-links { display: flex; align-items: center; gap: clamp(22px, 3.3vw, 48px); font-size: 12px; font-weight: 500; letter-spacing: .03em; }
+.nav-links > a:not(.nav-cta) { transition: opacity .2s; }
+.nav-links > a:not(.nav-cta):hover { opacity: .7; }
+.nav-cta { display: inline-flex; align-items: center; gap: 12px; padding: 13px 18px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px; transition: background .2s,color .2s; }
+.nav-cta:hover { color: var(--ink); background: white; }
+.scrolled .nav-cta { border-color: var(--ink); }
+.scrolled .nav-cta:hover { color: white; background: var(--ink); }
+.menu-toggle { display: none; }
+
+.hero { position: relative; min-height: 700px; height: min(850px, 100svh); display: flex; align-items: center; overflow: hidden; color: white; background: var(--deep); }
+.hero-image, .hero-shade { position: absolute; inset: 0; }
+.hero-image { background: url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=2200&q=90") center 54% / cover; animation: hero-zoom 18s ease-out both; }
+.hero-shade { background: linear-gradient(90deg, rgba(11,29,26,.76) 0%, rgba(11,29,26,.48) 43%, rgba(11,29,26,.08) 100%), linear-gradient(0deg, rgba(11,29,26,.34), transparent 26%); }
+.hero-content { position: relative; z-index: 1; padding-top: 48px; }
+.eyebrow { margin: 0 0 24px; color: rgba(255,255,255,.72); font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.hero-eyebrow { display: flex; align-items: center; gap: 10px; }
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--saffron); }
+.hero h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -.04em; }
+.hero h1 { margin: 0; font-size: clamp(74px, 10vw, 144px); line-height: .9; }
+.hero h1 em, h2 em { font-weight: 500; }
+.hero-copy { margin: 29px 0 30px; color: rgba(255,255,255,.81); font-size: 15px; line-height: 1.8; }
+.button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 28px; padding: 0 21px; border: 1px solid transparent; border-radius: 2px; font-size: 11px; font-weight: 600; letter-spacing: .03em; cursor: pointer; transition: transform .2s, background .2s, color .2s; }
+.button:hover { transform: translateY(-2px); }
+.button-light { color: var(--ink); background: var(--cream); }
+.button-light:hover { background: white; }
+.hero-foot { position: absolute; z-index: 1; right: 0; bottom: 29px; left: 0; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,.73); font-size: 9px; letter-spacing: .16em; }
+.hero-scroll { display: flex; align-items: center; gap: 12px; }
+.scroll-line { width: 36px; height: 1px; background: var(--saffron); }
+.hero-side-note { position: absolute; z-index: 1; top: 49%; right: 27px; display: flex; gap: 16px; color: rgba(255,255,255,.75); font-size: 9px; letter-spacing: .15em; writing-mode: vertical-rl; text-transform: uppercase; }
+@keyframes hero-zoom { from { transform: scale(1.05); } to { transform: scale(1); } }
+
+.intro { padding-top: 125px; padding-bottom: 110px; }
+.eyebrow-dark { color: #8b735e; }
+.intro .eyebrow { margin-bottom: 25px; }
+.intro-row { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12%; align-items: end; }
+.intro h2, .section-heading h2, .experience-heading h2 { margin: 0; font-size: clamp(43px, 5.3vw, 70px); line-height: 1.08; }
+.intro h2 em, .section-heading h2 em, .experience-heading h2 em { color: #9b6848; }
+.intro-row > p { max-width: 385px; margin: 0 0 5px; color: #697069; font-size: 14px; line-height: 1.9; }
+
+.section-pad { padding: 104px 0 112px; }
+.destinations { background: #eeece5; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 45px; }
+.section-heading .eyebrow { margin-bottom: 20px; }
+.section-heading h2 { font-size: clamp(42px, 5vw, 64px); }
+.text-link { display: inline-flex; align-items: center; gap: 20px; padding-bottom: 8px; border-bottom: 1px solid #a8a69b; font-size: 11px; font-weight: 600; white-space: nowrap; transition: gap .2s; }
+.text-link:hover { gap: 27px; }
+.destination-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 19px; align-items: start; }
+.place-card { position: relative; min-height: 400px; height: 34vw; max-height: 480px; overflow: hidden; color: white; background: #6c766b; }
+.place-card-tall { height: calc(34vw + 55px); max-height: 535px; }
+.place-card::after { position: absolute; inset: 0; content: ""; background: linear-gradient(0deg, rgba(10,24,21,.8), transparent 55%); transition: background .3s; }
+.place-card:hover img { transform: scale(1.045); }
+.place-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+.place-number { position: absolute; z-index: 1; top: 22px; left: 22px; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(255,255,255,.63); border-radius: 50%; font-size: 9px; }
+.place-info { position: absolute; z-index: 1; right: 24px; bottom: 25px; left: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+.place-info > span:first-child { margin-bottom: 11px; color: rgba(255,255,255,.77); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.place-info strong { font-family: var(--serif); font-size: clamp(25px, 2.7vw, 38px); font-weight: 500; line-height: 1.06; }
+.place-arrow { position: absolute; right: 0; bottom: 3px; font-size: 18px; transition: transform .2s; }
+.place-card:hover .place-arrow { transform: translate(3px,-3px); }
+
+.quote-band { position: relative; display: flex; min-height: 590px; align-items: center; overflow: hidden; color: white; background: var(--deep); }
+.quote-image, .quote-overlay { position: absolute; inset: 0; }
+.quote-image { background: url("https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=2100&q=85") center 52% / cover; }
+.quote-overlay { background: linear-gradient(90deg, rgba(15,39,33,.88), rgba(15,39,33,.5) 52%, rgba(15,39,33,.14)); }
+.quote-content { position: relative; z-index: 1; max-width: 1240px; }
+.quote-content .eyebrow { margin-bottom: 25px; }
+.quote-content h2, .planner h2 { margin: 0; font-size: clamp(50px, 6.4vw, 82px); line-height: 1.02; }
+.quote-content h2 em, .planner h2 em { color: #e6b58d; }
+.quote-content > p:not(.eyebrow) { max-width: 440px; margin: 24px 0 27px; color: rgba(255,255,255,.8); font-size: 13px; line-height: 1.9; }
+.button-outline { color: white; background: transparent; border-color: rgba(255,255,255,.57); }
+.button-outline:hover { color: var(--ink); background: white; }
+.quote-caption { position: absolute; right: 34px; bottom: 34px; color: rgba(255,255,255,.63); font-size: 9px; letter-spacing: .17em; writing-mode: vertical-rl; }
+
+.experiences { background: var(--cream); }
+.experience-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 11%; align-items: center; }
+.experience-heading .eyebrow { margin-bottom: 20px; }
+.experience-heading h2 { font-size: clamp(42px, 4.5vw, 60px); }
+.experience-heading > p:not(.eyebrow) { max-width: 330px; margin: 23px 0 27px; color: #73786e; font-size: 13px; line-height: 1.8; }
+.experience-list { border-top: 1px solid #d9d6cd; }
+.experience-item { display: grid; grid-template-columns: 42px 1fr 24px; gap: 17px; align-items: start; padding: 27px 0; border-bottom: 1px solid #d9d6cd; }
+.experience-icon { padding-top: 3px; color: #a07b60; font-family: var(--serif); font-size: 17px; }
+.experience-item h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+.experience-item p { max-width: 390px; margin: 0; color: #73786e; font-size: 12px; line-height: 1.8; }
+.experience-symbol { padding-top: 5px; font-size: 16px; }
+
+.journal { background: #eeece5; }
+.journal-heading { align-items: end; }
+.journal-note { margin: 0 0 8px; color: #73786e; font-size: 12px; line-height: 1.8; }
+.gallery-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 17px; }
+.gallery-tile { position: relative; height: 320px; padding: 0; border: 0; overflow: hidden; color: white; text-align: left; background: #9b9b87; cursor: zoom-in; }
+.gallery-tile::after { position: absolute; inset: 40% 0 0; content: ""; background: linear-gradient(0deg, rgba(13,30,24,.63), transparent); }
+.gallery-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.gallery-tile:hover img { transform: scale(1.04); }
+.gallery-tile > span { position: absolute; z-index: 1; bottom: 20px; left: 20px; font-size: 9px; font-weight: 600; letter-spacing: .15em; }
+
+.planner { padding: 88px 0; color: white; background: var(--forest); }
+.planner-inner { display: grid; grid-template-columns: 1fr .8fr; gap: 10%; align-items: center; }
+.planner .eyebrow { margin-bottom: 20px; }
+.planner h2 { font-size: clamp(47px, 5.7vw, 70px); }
+.planner-form { padding: 27px; color: var(--ink); background: var(--cream); }
+.planner-form label { display: block; margin-bottom: 15px; font-family: var(--serif); font-size: 19px; }
+.planner-controls { display: flex; gap: 9px; }
+.planner-controls select { min-width: 0; flex: 1; height: 50px; padding: 0 13px; border: 1px solid #dad8d0; border-radius: 2px; color: var(--ink); background: white; font-size: 11px; }
+.button-dark { color: white; background: var(--forest); }
+.button-dark:hover { background: var(--deep); }
+.form-message { min-height: 16px; margin: 10px 0 0; color: #596a56; font-size: 11px; }
+
+.site-footer { color: white; background: #102923; }
+.footer-main { display: grid; grid-template-columns: 1.4fr .8fr .8fr; gap: 50px; padding-top: 62px; padding-bottom: 55px; }
+.footer-brand { font-size: 18px; }
+.footer-about p, .footer-note p { margin: 18px 0 0; color: rgba(255,255,255,.66); font-size: 11px; line-height: 1.9; }
+.footer-label { display: block; margin: 5px 0 18px; color: #d5aa81; font-size: 9px; letter-spacing: .15em; }
+.footer-links { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; font-size: 11px; }
+.footer-links .footer-label { margin-bottom: 5px; }
+.footer-links a, .footer-note a { color: rgba(255,255,255,.8); }
+.footer-links a:hover, .footer-note a:hover { color: white; }
+.footer-note a { display: inline-block; margin-top: 14px; font-size: 10px; }
+.footer-bottom { display: flex; justify-content: space-between; padding-top: 18px; padding-bottom: 18px; border-top: 1px solid rgba(255,255,255,.17); color: rgba(255,255,255,.54); font-size: 8px; letter-spacing: .14em; }
+.footer-bottom a { color: rgba(255,255,255,.74); }
+
+.lightbox { position: fixed; width: min(1000px, calc(100% - 32px)); max-width: none; max-height: 90vh; padding: 12px; border: 0; background: #102923; box-shadow: 0 18px 70px rgba(0,0,0,.35); }
+.lightbox::backdrop { background: rgba(7,18,15,.84); backdrop-filter: blur(5px); }
+.lightbox img { width: 100%; max-height: calc(90vh - 24px); object-fit: contain; }
+.lightbox-close { position: absolute; top: 20px; right: 20px; z-index: 1; width: 40px; height: 40px; border: 0; border-radius: 50%; color: var(--ink); background: white; font-size: 25px; cursor: pointer; }
+
+:focus-visible { outline: 2px solid #d98e55; outline-offset: 4px; }
+@media (max-width: 900px) {
+    .page-wrap, .nav-shell { width: calc(100% - 56px); }
+    .nav-links { gap: 20px; }
+    .destination-grid { grid-template-columns: 1fr 1fr; }
+    .place-card, .place-card-tall { height: 420px; max-height: none; }
+    .place-card:first-child { grid-row: span 2; height: 100%; min-height: 600px; }
+    .experience-layout { gap: 7%; }
+    .gallery-tile { height: 260px; }
+    .quote-band { min-height: 540px; }
+}
+@media (max-width: 680px) {
+    html { scroll-padding-top: 70px; }
+    .page-wrap { width: calc(100% - 40px); }
+    .nav-shell { width: calc(100% - 40px); height: 70px; }
+    .brand { font-size: 18px; }
+    .menu-toggle { display: flex; width: 42px; height: 42px; flex-direction: column; justify-content: center; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; color: inherit; background: transparent; cursor: pointer; }
+    .menu-toggle span { width: 16px; height: 1px; background: currentColor; transition: transform .2s; }
+    .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+    .scrolled .menu-toggle { border-color: rgba(25,51,45,.4); }
+    .nav-links { position: absolute; top: 70px; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 20px 20px; color: var(--ink); background: var(--cream); box-shadow: 0 14px 22px rgba(17,38,31,.12); }
+    .nav-links.open { display: flex; flex-direction: column; }
+    .nav-links > a:not(.nav-cta) { padding: 14px 4px; border-bottom: 1px solid #dfddd5; }
+    .nav-cta { justify-content: space-between; margin-top: 14px; border-color: var(--ink); }
+    .hero { min-height: 650px; height: 90svh; max-height: 790px; }
+    .hero-image { background-position: 57% center; }
+    .hero-shade { background: linear-gradient(90deg, rgba(11,29,26,.66), rgba(11,29,26,.12)), linear-gradient(0deg, rgba(11,29,26,.3), transparent 38%); }
+    .hero-content { padding-top: 28px; }
+    .hero-eyebrow { max-width: 270px; font-size: 8px; line-height: 1.7; }
+    .hero h1 { font-size: clamp(74px, 18vw, 110px); }
+    .hero-copy { font-size: 13px; }
+    .hero-foot { bottom: 22px; font-size: 7px; }
+    .hero-foot > span:last-child, .hero-side-note { display: none; }
+    .intro { padding-top: 80px; padding-bottom: 75px; }
+    .intro-row { grid-template-columns: 1fr; gap: 20px; }
+    .intro h2 { font-size: 46px; }
+    .intro-row > p { font-size: 13px; }
+    .section-pad { padding: 75px 0; }
+    .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 29px; }
+    .section-heading h2 { font-size: 43px; }
+    .section-heading .eyebrow { margin-bottom: 15px; }
+    .destination-grid { grid-template-columns: 1fr; gap: 13px; }
+    .place-card, .place-card-tall, .place-card:first-child { grid-row: auto; height: 390px; min-height: 0; }
+    .place-info strong { font-size: 33px; }
+    .quote-band { min-height: 575px; }
+    .quote-image { background-position: 58% center; }
+    .quote-overlay { background: linear-gradient(90deg, rgba(15,39,33,.83), rgba(15,39,33,.32)), linear-gradient(0deg, rgba(15,39,33,.35), transparent); }
+    .quote-content h2, .planner h2 { font-size: 53px; }
+    .quote-content > p:not(.eyebrow) { font-size: 12px; }
+    .quote-caption { right: 15px; bottom: 20px; font-size: 7px; }
+    .experience-layout { grid-template-columns: 1fr; gap: 38px; }
+    .experience-heading h2 { font-size: 46px; }
+    .experience-item { grid-template-columns: 30px 1fr 18px; gap: 12px; padding: 22px 0; }
+    .experience-item h3 { font-size: 21px; }
+    .experience-item p { font-size: 11px; }
+    .journal-note { margin-top: -10px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; gap: 11px; }
+    .gallery-tile, .gallery-wide { height: 190px; }
+    .gallery-wide { grid-column: span 2; }
+    .gallery-tile > span { bottom: 13px; left: 12px; font-size: 7px; }
+    .planner { padding: 68px 0; }
+    .planner-inner { grid-template-columns: 1fr; gap: 31px; }
+    .planner h2 { font-size: 53px; }
+    .planner-form { padding: 20px; }
+    .planner-controls { flex-direction: column; }
+    .planner-controls .button { width: 100%; }
+    .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 20px; padding-top: 48px; padding-bottom: 40px; }
+    .footer-about { grid-column: span 2; }
+    .footer-note p br { display: none; }
+    .footer-bottom { flex-wrap: wrap; gap: 12px; font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* India IRL: playful, high-contrast travel scrapbook */
+:root {
+    --ink: #1b1a1f;
+    --forest: #7043f4;
+    --deep: #30177a;
+    --cream: #fff9ec;
+    --sand: #f0ebdf;
+    --muted: #696574;
+    --saffron: #d5ff5c;
+    --serif: "Bricolage Grotesque", "DM Sans", sans-serif;
+    --sans: "DM Sans", Arial, sans-serif;
+    --acid: #d5ff5c;
+    --violet: #7043f4;
+    --coral: #ff765f;
+}
+html { scroll-padding-top: 82px; }
+body { color: var(--ink); background: var(--cream); font-family: var(--sans); }
+body::before { position: fixed; z-index: 100; inset: 0 auto auto 0; width: var(--scroll-progress, 0%); height: 4px; content: ""; background: var(--acid); box-shadow: 0 0 16px rgba(213,255,92,.85); }
+::selection { color: var(--ink); background: var(--acid); }
+.site-header { color: var(--ink); }
+.site-header.scrolled { background: rgba(255,249,236,.94); box-shadow: 0 4px 22px rgba(40,25,78,.09); }
+.nav-shell { height: 82px; }
+.brand { gap: 9px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.07em; }
+.brand-mark { border: 0; color: var(--violet); font-size: 29px; animation: mark-spin 18s linear infinite; }
+.brand-light { color: var(--violet); font-weight: 600; }
+.nav-links { gap: clamp(20px, 3vw, 42px); font-size: 12px; font-weight: 700; }
+.nav-cta { padding: 12px 18px; border: 0; border-radius: 999px; color: var(--ink); background: var(--acid); box-shadow: 0 4px 0 #a9ce35; }
+.nav-cta:hover { color: white; background: var(--violet); }
+.scrolled .nav-cta { border: 0; }
+.scrolled .nav-cta:hover { color: white; background: var(--violet); }
+.hero { min-height: 690px; height: min(850px, 100svh); background: #27165a; }
+.hero-image { background-position: center 54%; animation: hero-drift 24s ease-in-out infinite alternate; }
+.hero-shade { background: linear-gradient(100deg, rgba(34,17,83,.88) 0%, rgba(65,37,132,.64) 48%, rgba(28,18,60,.16) 100%), linear-gradient(0deg, rgba(20,12,45,.32), transparent 36%); }
+.hero-content { padding-top: 35px; }
+.eyebrow { font-family: "DM Mono", monospace; font-size: 10px; font-weight: 500; letter-spacing: .11em; }
+.hero-eyebrow { display: inline-flex; gap: 10px; align-items: center; padding: 10px 14px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; color: white; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); }
+.hero-eyebrow span { width: 8px; height: 8px; background: var(--acid); box-shadow: 0 0 12px var(--acid); }
+.hero h1 { font-family: var(--serif); font-size: clamp(84px, 13vw, 172px); font-weight: 800; letter-spacing: -.085em; line-height: .78; }
+.hero h1 em { color: var(--acid); font-style: normal; letter-spacing: -.07em; }
+.hero-copy { margin: 30px 0 26px; color: rgba(255,255,255,.92); font-size: 16px; line-height: 1.65; }
+.button { min-height: 52px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0; }
+.button-light { color: var(--ink); background: var(--acid); box-shadow: 0 5px 0 #a9ce35; }
+.button-light:hover { background: white; box-shadow: 0 5px 0 #d4d0c8; }
+.hero-sticker { position: absolute; z-index: 2; top: 48%; right: max(12%, calc((100vw - 1240px)/2 + 80px)); display: flex; width: 150px; height: 150px; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 3px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--acid); box-shadow: 7px 9px 0 rgba(20,12,45,.34); text-align: center; transform: rotate(11deg); animation: sticker-bob 4.2s ease-in-out infinite; }
+.hero-sticker span { font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .15em; }
+.hero-sticker strong { font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.08em; }
+.hero-coordinate { position: absolute; z-index: 1; top: 27%; right: 7%; color: rgba(255,255,255,.75); font-family: "DM Mono", monospace; font-size: 9px; line-height: 1.7; text-align: right; }
+.hero-foot { bottom: 24px; color: rgba(255,255,255,.85); font-family: "DM Mono", monospace; font-size: 9px; }
+.scroll-line { width: 45px; height: 2px; background: var(--acid); }
+.hero-side-note { right: 20px; color: var(--acid); font-family: "DM Mono", monospace; font-size: 9px; }
+.intro { padding-top: 100px; padding-bottom: 92px; }
+.eyebrow-dark { display: inline-flex; align-items: center; padding: 9px 13px; border-radius: 999px; color: var(--violet); background: #eee7ff; }
+.intro .eyebrow { margin-bottom: 22px; }
+.intro-row { grid-template-columns: 1.15fr .85fr; gap: 9%; }
+.intro h2, .section-heading h2, .experience-heading h2 { font-family: var(--serif); font-size: clamp(48px, 6vw, 80px); font-weight: 800; letter-spacing: -.075em; line-height: .98; }
+.intro h2 em, .section-heading h2 em, .experience-heading h2 em { color: var(--violet); font-style: normal; }
+.intro-row > p { max-width: 410px; color: #5f5b68; font-size: 15px; line-height: 1.8; }
+.vibe-strip { overflow: hidden; padding: 15px 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); color: var(--ink); background: var(--acid); transform: rotate(-1deg) scale(1.02); }
+.vibe-track { display: flex; width: max-content; align-items: center; gap: 29px; animation: marquee 32s linear infinite; font-family: "DM Mono", monospace; font-size: 12px; font-weight: 500; letter-spacing: .08em; }
+.vibe-track b { color: var(--violet); font-family: var(--sans); font-size: 20px; }
+.section-pad { padding: 110px 0; }
+.destinations { background: #f1ebff; }
+.section-heading { margin-bottom: 46px; }
+.section-heading .eyebrow { margin-bottom: 20px; }
+.section-heading h2 { font-size: clamp(48px, 6vw, 76px); }
+.text-link { gap: 15px; padding-bottom: 7px; border-bottom: 2px solid var(--violet); color: var(--ink); font-size: 12px; font-weight: 700; }
+.text-link:hover { gap: 23px; color: var(--violet); }
+.destination-grid { gap: 20px; align-items: center; }
+.place-card, .place-card-tall { height: 440px; min-height: 0; max-height: none; border: 3px solid white; border-radius: 25px; box-shadow: 0 13px 0 rgba(88,57,173,.13); isolation: isolate; }
+.place-card-tall { height: 500px; }
+.place-card:first-child { transform: rotate(-1.5deg); }
+.place-card:nth-child(2) { transform: rotate(1.2deg) translateY(23px); }
+.place-card:nth-child(3) { transform: rotate(-1deg) translateY(-8px); }
+.place-card:hover { z-index: 2; transform: translateY(-9px) rotate(0) scale(1.015); box-shadow: 0 20px 0 rgba(88,57,173,.18); }
+.place-card::after { background: linear-gradient(0deg, rgba(21,15,34,.88), rgba(21,15,34,.04) 72%); }
+.place-card img { border-radius: 21px; }
+.place-number { top: 17px; left: 17px; width: 37px; height: 37px; border: 2px solid white; border-radius: 50%; background: rgba(22,18,37,.26); font-family: "DM Mono", monospace; font-size: 10px; backdrop-filter: blur(8px); }
+.place-info { right: 22px; bottom: 23px; left: 22px; }
+.place-info > span:first-child { font-family: "DM Mono", monospace; font-size: 9px; }
+.place-info strong { font-family: var(--serif); font-size: clamp(27px, 3vw, 39px); font-weight: 700; letter-spacing: -.055em; line-height: .98; }
+.place-arrow { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 50%; color: var(--ink); background: var(--acid); }
+.quote-band { min-height: 590px; background: var(--deep); }
+.quote-image { background-position: center 52%; }
+.quote-overlay { background: linear-gradient(90deg, rgba(42,19,110,.88), rgba(49,28,115,.61) 57%, rgba(34,23,79,.2)), linear-gradient(0deg, rgba(28,17,70,.22), transparent); }
+.quote-content .eyebrow { display: inline-flex; padding: 9px 13px; border-radius: 999px; color: var(--ink); background: var(--acid); }
+.quote-content h2, .planner h2 { font-family: var(--serif); font-size: clamp(55px, 7vw, 90px); font-weight: 800; letter-spacing: -.08em; line-height: .9; }
+.quote-content h2 em, .planner h2 em { color: var(--acid); font-style: normal; }
+.quote-content > p:not(.eyebrow) { max-width: 460px; font-size: 14px; line-height: 1.8; }
+.button-outline { border: 2px solid rgba(255,255,255,.8); border-radius: 999px; }
+.quote-caption { font-family: "DM Mono", monospace; }
+.experiences { background: var(--cream); }
+.experience-layout { grid-template-columns: .85fr 1.15fr; gap: 9%; }
+.experience-heading h2 { font-size: clamp(50px, 5.6vw, 72px); }
+.experience-heading > p:not(.eyebrow) { color: #625e6b; font-size: 14px; line-height: 1.8; }
+.experience-list { display: grid; gap: 13px; border: 0; }
+.experience-item { grid-template-columns: 45px 1fr 27px; gap: 17px; align-items: center; padding: 22px 21px; border: 2px solid #eee9dd; border-radius: 18px; background: white; box-shadow: 0 5px 0 #e9e2d6; transition: transform .2s, box-shadow .2s; }
+.experience-item:hover { transform: translateY(-4px) rotate(-.4deg); box-shadow: 0 9px 0 #e9e2d6; }
+.experience-icon { display: grid; width: 39px; height: 39px; place-items: center; padding: 0; border-radius: 50%; color: var(--ink); background: var(--acid); font-family: "DM Mono", monospace; font-size: 11px; }
+.experience-item:nth-child(2) .experience-icon { background: #ffb8a5; }
+.experience-item:nth-child(3) .experience-icon { color: white; background: var(--violet); }
+.experience-item h3 { font-family: var(--serif); font-size: 24px; font-weight: 700; letter-spacing: -.05em; }
+.experience-item p { color: #716d79; font-size: 12px; line-height: 1.7; }
+.experience-symbol { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 50%; background: #f2edff; }
+.journal { background: #fff0e9; }
+.journal-note { color: #6a6470; font-family: "DM Mono", monospace; font-size: 11px; }
+.gallery-grid { gap: 16px; }
+.gallery-tile { height: 335px; border: 3px solid white; border-radius: 22px; box-shadow: 0 9px 0 rgba(215,111,84,.15); }
+.gallery-tile::after { background: linear-gradient(0deg, rgba(26,17,37,.72), transparent 68%); }
+.gallery-tile > span { bottom: 21px; left: 21px; padding: 9px 12px; border-radius: 999px; color: var(--ink); background: var(--acid); font-family: "DM Mono", monospace; font-size: 8px; letter-spacing: .05em; }
+.planner { padding: 94px 0; color: var(--ink); background: var(--acid); }
+.planner .eyebrow { display: inline-flex; padding: 9px 13px; border: 1px solid rgba(27,26,31,.2); border-radius: 999px; color: var(--ink); }
+.planner h2 { font-size: clamp(55px, 6vw, 78px); }
+.planner h2 em { color: var(--violet); }
+.planner-form { padding: 28px; border: 2px solid var(--ink); border-radius: 22px; background: var(--cream); box-shadow: 8px 8px 0 var(--ink); }
+.planner-form label { font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -.04em; }
+.planner-controls select { height: 52px; border: 2px solid #e3decf; border-radius: 12px; background: white; font-size: 12px; }
+.button-dark { border-radius: 12px; color: white; background: var(--violet); box-shadow: 0 4px 0 #4e2bb7; }
+.button-dark:hover { background: #5d32de; box-shadow: 0 4px 0 #3d1b9c; }
+.surprise-button { margin-top: 10px; padding: 7px 0; border: 0; color: var(--violet); background: transparent; font-size: 11px; font-weight: 700; cursor: pointer; }
+.surprise-button:hover { text-decoration: underline; }
+.form-message { color: #5336ae; font-size: 11px; line-height: 1.5; }
+.site-footer { color: white; background: #211345; }
+.brand-mark { color: var(--acid); }
+.footer-brand .brand-light { color: white; }
+.footer-label { color: var(--acid); font-family: "DM Mono", monospace; }
+.footer-bottom { border-color: rgba(255,255,255,.2); font-family: "DM Mono", monospace; }
+.lightbox { border: 3px solid white; border-radius: 22px; background: #211345; }
+.lightbox-close { border: 2px solid var(--ink); color: var(--ink); background: var(--acid); font-weight: 700; }
+
+body.js-motion .reveal { opacity: 0; transform: translateY(24px) rotate(.4deg); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.75,.2,1); }
+body.js-motion .reveal.is-visible { opacity: 1; transform: translateY(0) rotate(0); }
+.place-card.reveal { transition: opacity .65s ease, transform .65s cubic-bezier(.2,.75,.2,1), box-shadow .2s; }
+.place-card.reveal.is-visible { transform: rotate(var(--card-tilt, 0deg)); }
+.place-card.reveal.is-visible:hover { transform: translateY(-9px) rotate(0) scale(1.015); }
+.experience-item.reveal:nth-child(2), .gallery-tile.reveal:nth-child(2) { transition-delay: .08s; }
+.experience-item.reveal:nth-child(3), .gallery-tile.reveal:nth-child(3) { transition-delay: .16s; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes sticker-bob { 0%,100% { transform: translateY(0) rotate(11deg); } 50% { transform: translateY(-12px) rotate(6deg); } }
+@keyframes mark-spin { to { transform: rotate(360deg); } }
+@keyframes hero-drift { from { transform: scale(1.02) translateX(-.5%); } to { transform: scale(1.09) translateX(.5%); } }
+
+@media (max-width: 900px) {
+    .place-card, .place-card-tall { height: 430px; }
+    .place-card:first-child { height: 100%; }
+    .hero-sticker { right: 10%; width: 125px; height: 125px; }
+    .hero-sticker strong { font-size: 18px; }
+}
+@media (max-width: 680px) {
+    html { scroll-padding-top: 70px; }
+    .nav-shell { height: 70px; }
+    .menu-toggle { border-color: rgba(27,26,31,.35); color: var(--ink); }
+    .site-header:not(.scrolled) .menu-toggle { border-color: rgba(255,255,255,.7); color: white; background: rgba(35,19,79,.22); }
+    .nav-links { top: 70px; background: var(--cream); }
+    .nav-cta { background: var(--acid); }
+    .hero { min-height: 690px; height: 94svh; }
+    .hero-content { padding-top: 22px; }
+    .hero-eyebrow { font-size: 8px; }
+    .hero h1 { font-size: clamp(86px, 21vw, 132px); }
+    .hero-copy { font-size: 14px; }
+    .hero-sticker { top: auto; right: 25px; bottom: 105px; width: 108px; height: 108px; border-width: 2px; }
+    .hero-sticker span { font-size: 8px; }
+    .hero-sticker strong { font-size: 15px; }
+    .hero-coordinate { top: auto; right: 24px; bottom: 57px; font-size: 7px; }
+    .hero-foot { bottom: 20px; font-size: 7px; }
+    .hero-foot > span:last-child, .hero-side-note { display: none; }
+    .intro { padding-top: 76px; padding-bottom: 68px; }
+    .intro-row { gap: 20px; }
+    .intro h2 { font-size: clamp(48px, 12vw, 62px); }
+    .intro-row > p { font-size: 13px; }
+    .vibe-strip { padding: 12px 0; }
+    .vibe-track { gap: 20px; font-size: 10px; }
+    .section-pad { padding: 78px 0; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading h2 { font-size: 48px; }
+    .destination-grid { grid-template-columns: 1fr; gap: 17px; }
+    .place-card, .place-card-tall, .place-card:first-child { height: 390px; min-height: 0; transform: none; }
+    .place-card:hover { transform: translateY(-5px) scale(1.01); }
+    .place-info strong { font-size: 34px; }
+    .quote-band { min-height: 590px; }
+    .quote-content h2, .planner h2 { font-size: 58px; }
+    .quote-content > p:not(.eyebrow) { font-size: 13px; }
+    .experience-layout { gap: 35px; }
+    .experience-heading h2 { font-size: 53px; }
+    .experience-item { grid-template-columns: 38px 1fr 24px; gap: 12px; padding: 18px 14px; }
+    .experience-item h3 { font-size: 21px; }
+    .experience-item p { font-size: 11px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .gallery-tile, .gallery-wide { height: 190px; }
+    .gallery-wide { grid-column: span 2; }
+    .gallery-tile > span { bottom: 12px; left: 12px; padding: 7px 9px; font-size: 7px; }
+    .planner { padding: 72px 0; }
+    .planner-inner { gap: 33px; }
+    .planner h2 { font-size: 57px; }
+    .planner-form { padding: 20px; box-shadow: 5px 5px 0 var(--ink); }
+    .planner-controls { flex-direction: column; }
+    .planner-controls .button { width: 100%; }
+    .footer-main { gap: 30px 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body::before { display: none; }
+    .vibe-track { animation: none; }
+    .hero-image, .hero-sticker, .brand-mark { animation: none; }
+    body.js-motion .reveal { opacity: 1; transform: none; }
+}
+.site-header { color: white; }
+.site-header.scrolled { color: var(--ink); }
+.brand-light { color: inherit; }
+.scrolled .brand-light { color: var(--violet); }
+.nav-shell .brand-mark { color: var(--acid); }
+.scrolled .nav-shell .brand-mark { color: var(--violet); }
+.footer-brand .brand-mark { color: var(--acid); }
+@media (max-width: 680px) {
+    .place-card.reveal.is-visible { transform: none; }
+    .place-card.reveal.is-visible:hover { transform: translateY(-5px) scale(1.01); }
+}
+.button, .nav-cta, .text-link, .surprise-button, .menu-toggle, .gallery-tile, .place-card, .lightbox-close { position: relative; isolation: isolate; }
+.lightbox-close { position: absolute; }
+.button, .nav-cta, .text-link, .surprise-button, .menu-toggle, .gallery-tile, .place-card, .lightbox-close { -webkit-tap-highlight-color: transparent; }
+.button, .nav-cta, .text-link, .surprise-button, .menu-toggle, .gallery-tile, .place-card, .lightbox-close { transition: transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease, background-color .18s ease; }
+.text-link { overflow: hidden; border-radius: 5px; }
+.button:active, .nav-cta:active, .text-link:active, .surprise-button:active, .menu-toggle:active, .gallery-tile:active, .place-card:active, .lightbox-close:active { transform: scale(.95) rotate(-.6deg); }
+.tap-bounce { animation: tap-bounce .42s cubic-bezier(.2,.85,.25,1.35) both !important; }
+.tap-ripple { position: absolute; z-index: 4; display: block; width: var(--ripple-size); height: var(--ripple-size); border-radius: 50%; pointer-events: none; background: rgba(255,255,255,.6); animation: tap-ripple .62s ease-out forwards; }
+.tap-spark { position: absolute; z-index: 5; color: var(--acid); font-size: 17px; line-height: 1; pointer-events: none; text-shadow: 0 1px 3px rgba(22,15,41,.35); animation: tap-spark .55s cubic-bezier(.16,.78,.3,1) forwards; }
+.planner-form .tap-spark { color: var(--violet); }
+@keyframes tap-bounce { 0% { transform: scale(1); } 24% { transform: scale(.91) rotate(-1.5deg); } 56% { transform: scale(1.07) rotate(1.2deg); } 78% { transform: scale(.98) rotate(-.4deg); } 100% { transform: scale(1); } }
+@keyframes tap-ripple { 0% { opacity: .65; transform: scale(.08); } 100% { opacity: 0; transform: scale(1); } }
+@keyframes tap-spark { 0% { opacity: 1; transform: translate(-50%,-50%) scale(.3) rotate(0); } 100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)),calc(-50% + var(--spark-y))) scale(0) rotate(110deg); } }
+@media (prefers-reduced-motion: reduce) {
+    .tap-bounce, .tap-ripple, .tap-spark { animation: none !important; }
+    .tap-ripple, .tap-spark { display: none; }
+    .button:active, .nav-cta:active, .text-link:active, .surprise-button:active, .menu-toggle:active, .gallery-tile:active, .place-card:active, .lightbox-close:active { transform: none; }
+}
+
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+        <nav class="nav-shell" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="India, Unfolded home">
+                <span class="brand-mark" aria-hidden="true">✳</span>
+                <span>INDIA<span class="brand-light"> IRL</span></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="#destinations">Places</a>
+                <a href="#culture">The culture</a>
+                <a href="#gallery">Journal</a>
+                <a href="#contact">About us</a>
+                <a class="nav-cta" href="#trip-planner">Plan a trip <span aria-hidden="true">↗</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-image" role="img" aria-label="The Taj Mahal at sunrise"></div>
+            <div class="hero-shade"></div>
+            <div class="hero-content page-wrap">
+                <p class="eyebrow hero-eyebrow"><span></span> Your group chat called. It wants a trip.</p>
+                <h1 id="hero-title">India,<br><em>IRL.</em></h1>
+                <p class="hero-copy">Plot twist: your best story starts<br>somewhere you haven't been yet.</p>
+                <a class="button button-light" href="#destinations">Pick your side quest <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-sticker" aria-hidden="true"><span>NO</span><strong>ITINERARY</strong><span>JUST VIBES ✳</span></div>
+            <div class="hero-coordinate" aria-hidden="true">28°36' N<br>77°12' E</div>
+            <div class="hero-foot page-wrap">
+                <span>27°10' N &nbsp; 78°02' E</span>
+                <span class="hero-scroll"><span class="scroll-line"></span> SCROLL FOR THE PLOT</span>
+                <span>EST. IN WONDER</span>
+            </div>
+            <a class="hero-side-note" href="#culture">Main character energy <span aria-hidden="true">↘</span></a>
+        </section>
+
+        <section class="intro page-wrap" aria-label="Introduction">
+            <p class="eyebrow eyebrow-dark">Less planning. More plot twists.</p>
+            <div class="intro-row">
+                <h2>Not a trip.<br>It's your <em>whole era.</em></h2>
+                <p>One minute you're chasing the sunrise. Next, you're two chai deep with your new best friend. India has a way of turning "remember when" into a full-time hobby.</p>
+            </div>
+        </section>
+
+        <div class="vibe-strip" aria-hidden="true"><div class="vibe-track"><span>GOOD PLANS, LOOSELY HELD</span><b>✳</b><span>BIG CHAI ENERGY</span><b>✳</b><span>TAKE THE SCENIC ROUTE</span><b>✳</b><span>GOOD PLANS, LOOSELY HELD</span><b>✳</b><span>BIG CHAI ENERGY</span><b>✳</b><span>TAKE THE SCENIC ROUTE</span><b>✳</b></div></div>
+
+        <section class="destinations section-pad" id="destinations" aria-labelledby="destinations-title">
+            <div class="page-wrap">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-dark">01 &nbsp; / &nbsp; Choose your side quest</p>
+                        <h2 id="destinations-title">Pick your <em>plot twist.</em></h2>
+                    </div>
+                    <a class="text-link" href="#trip-planner">See where you end up <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="destination-grid">
+                    <a class="place-card place-card-tall" href="#trip-planner" data-place="Rajasthan">
+                        <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1100&q=85" alt="Hawa Mahal's pink facade in Jaipur" loading="lazy">
+                        <span class="place-number">01</span>
+                        <span class="place-info"><span>Rajasthan · The royal west</span><strong>Desert dreams<br>& old-world charm</strong><span class="place-arrow" aria-hidden="true">↗</span></span>
+                    </a>
+                    <a class="place-card" href="#trip-planner" data-place="Kerala">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=85" alt="A tranquil Kerala backwater framed by palms" loading="lazy">
+                        <span class="place-number">02</span>
+                        <span class="place-info"><span>Kerala · The green south</span><strong>Take the<br>slow way home</strong><span class="place-arrow" aria-hidden="true">↗</span></span>
+                    </a>
+                    <a class="place-card" href="#trip-planner" data-place="Agra">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=85" alt="The Taj Mahal mirrored in its reflecting pool" loading="lazy">
+                        <span class="place-number">03</span>
+                        <span class="place-info"><span>Agra · The timeless north</span><strong>History in<br>every direction</strong><span class="place-arrow" aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-band" id="culture" aria-labelledby="culture-title">
+            <div class="quote-image" role="img" aria-label="Warm evening light over a historic Indian palace"></div>
+            <div class="quote-overlay"></div>
+            <div class="quote-content page-wrap">
+                <p class="eyebrow">02 &nbsp; / &nbsp; The culture</p>
+                <h2 id="culture-title">So many vibes.<br><em>Zero copy-paste.</em></h2>
+                <p>Street-food missions. Festival nights. That one song everyone knows. Every corner has its own lore—and the best bits happen when you join in.</p>
+                <a class="button button-outline" href="#gallery">Get into the lore <span aria-hidden="true">↗</span></a>
+            </div>
+            <span class="quote-caption">A CITY, A SEASON, A STORY</span>
+        </section>
+
+        <section class="experiences section-pad" aria-labelledby="experiences-title">
+            <div class="page-wrap experience-layout">
+                <div class="experience-heading">
+                    <p class="eyebrow eyebrow-dark">Your itinerary could never</p>
+                    <h2 id="experiences-title">Your trip.<br>Your <em>rules.</em></h2>
+                    <p>Skip the checklist. Collect little moments you'll bring up for years.</p>
+                    <a class="text-link" href="#trip-planner">Build your own lore <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="experience-list">
+                    <article class="experience-item"><span class="experience-icon" aria-hidden="true">01</span><div><h3>Romanticize the detour</h3><p>Miss one turn. Find the best chai stop of your entire life.</p></div><span class="experience-symbol" aria-hidden="true">↗</span></article>
+                    <article class="experience-item"><span class="experience-icon" aria-hidden="true">02</span><div><h3>Let the snacks decide</h3><p>One market, three mystery snacks, zero regrets. Probably.</p></div><span class="experience-symbol" aria-hidden="true">↗</span></article>
+                    <article class="experience-item"><span class="experience-icon" aria-hidden="true">03</span><div><h3>Stay for the golden hour</h3><p>Mountain air, pink skies and absolutely no rush to leave.</p></div><span class="experience-symbol" aria-hidden="true">↗</span></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="journal section-pad" id="gallery" aria-labelledby="journal-title">
+            <div class="page-wrap">
+                <div class="section-heading journal-heading">
+                    <div><p class="eyebrow eyebrow-dark">03 &nbsp; / &nbsp; Notes from the road</p><h2 id="journal-title">Camera roll <em>energy.</em></h2></div>
+                    <p class="journal-note">Places that understood<br>the assignment.</p>
+                </div>
+                <div class="gallery-grid">
+                    <button class="gallery-tile gallery-wide" type="button" data-full="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=1800&q=90" aria-label="View colourful India market in larger detail">
+                        <img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=1200&q=85" alt="Colourful market scene in India" loading="lazy"><span>THE COLOUR OF EVERYDAY</span>
+                    </button>
+                    <button class="gallery-tile" type="button" data-full="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=90" aria-label="View Indian architecture in larger detail">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=85" alt="Intricate historic Indian architecture" loading="lazy"><span>MADE TO LAST</span>
+                    </button>
+                    <button class="gallery-tile" type="button" data-full="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1600&q=90" aria-label="View Indian mountain landscape in larger detail">
+                        <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=900&q=85" alt="Mountain landscape in northern India" loading="lazy"><span>WHERE THE AIR CHANGES</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner" id="trip-planner" aria-labelledby="planner-title">
+            <div class="planner-inner page-wrap">
+                <div><p class="eyebrow">The group chat will thank you</p><h2 id="planner-title">Let's make<br><em>some lore.</em></h2></div>
+                <form class="planner-form" id="planner-form">
+                    <label for="destination-select">Pick your current travel mood</label>
+                    <div class="planner-controls">
+                        <select id="destination-select" name="destination" aria-label="Choose a destination">
+                            <option value="">Choose a place</option>
+                            <option>Rajasthan</option><option>Kerala</option><option>Agra</option><option>Somewhere new</option>
+                        </select>
+                        <button class="button button-dark" type="submit">Lock in the vibe <span aria-hidden="true">↗</span></button>
+                    </div>
+                    <button class="surprise-button" type="button" id="surprise-button">🎲 &nbsp; Surprise me</button>
+                    <p class="form-message" id="planner-message" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <div class="footer-main page-wrap">
+            <div class="footer-about"><a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">✳</span><span>INDIA<span class="brand-light"> IRL</span></span></a><p>Come curious. Leave with a story.<br>Made for the love of getting lost.</p></div>
+            <div class="footer-links"><span class="footer-label">TAKE THE LONG WAY</span><a href="#destinations">Find a place</a><a href="#culture">Meet the culture</a><a href="#gallery">Read the journal</a></div>
+            <div class="footer-note"><span class="footer-label">A NOTE FROM US</span><p>Thoughtful journeys begin with<br>an open mind and a little wonder.</p><a href="#top">Back to the beginning ↑</a></div>
+        </div>
+        <div class="footer-bottom page-wrap"><span>© 2026 INDIA, UNFOLDED</span><span>MADE WITH CURIOSITY IN INDIA</span><a href="#home">PROMPTX &nbsp; ↗</a></div>
+    </footer>
+
+    <dialog class="lightbox" aria-label="Image preview">
+        <button class="lightbox-close" type="button" aria-label="Close image preview">×</button>
+        <img src="" alt="">
+    </dialog>
+
+    <script>
+const header = document.querySelector(".site-header");
+const menuButton = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const plannerForm = document.querySelector("#planner-form");
+const destinationSelect = document.querySelector("#destination-select");
+const plannerMessage = document.querySelector("#planner-message");
+const lightbox = document.querySelector(".lightbox");
+const lightboxImage = lightbox.querySelector("img");
+
+function updateHeader() {
+    header.classList.toggle("scrolled", window.scrollY > 24);
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+    document.documentElement.style.setProperty("--scroll-progress", `${progress}%`);
+}
+
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
+
+menuButton.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+    navLinks.classList.toggle("open", !isOpen);
+});
+
+navLinks.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+        navLinks.classList.remove("open");
+    }
+});
+
+document.querySelectorAll(".place-card").forEach((card) => {
+    card.addEventListener("click", () => {
+        destinationSelect.value = card.dataset.place;
+        plannerMessage.textContent = `${card.dataset.place} is on your list. Tell us where to take you next.`;
+    });
+});
+
+plannerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    plannerMessage.textContent = destinationSelect.value
+        ? `${destinationSelect.value} sounds like a lovely place to begin. Your journey is ready to explore.`
+        : "Choose a place to start dreaming up your journey.";
+});
+
+document.querySelector("#surprise-button").addEventListener("click", () => {
+    const places = ["Rajasthan", "Kerala", "Agra", "Somewhere new"];
+    const pick = places[Math.floor(Math.random() * places.length)];
+    destinationSelect.value = pick;
+    plannerMessage.textContent = `Plot twist: ${pick}. Could be the start of something good.`;
+});
+
+document.querySelectorAll(".gallery-tile").forEach((tile) => {
+    tile.addEventListener("click", () => {
+        lightboxImage.src = tile.dataset.full;
+        lightboxImage.alt = tile.querySelector("img").alt;
+        lightbox.showModal();
+    });
+});
+
+lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.close();
+});
+
+const animatedClickTargets = ".button, .nav-cta, .text-link, .surprise-button, .menu-toggle, .gallery-tile, .place-card, .lightbox-close";
+const sparkDirections = [[-22,-18], [22,-20], [-19,22], [21,20]];
+document.addEventListener("click", (event) => {
+    const target = event.target.closest(animatedClickTargets);
+    if (!target || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    target.classList.remove("tap-bounce");
+    void target.offsetWidth;
+    target.classList.add("tap-bounce");
+    target.addEventListener("animationend", () => target.classList.remove("tap-bounce"), { once: true });
+
+    const bounds = target.getBoundingClientRect();
+    const x = event.detail ? event.clientX - bounds.left : bounds.width / 2;
+    const y = event.detail ? event.clientY - bounds.top : bounds.height / 2;
+    const ripple = document.createElement("span");
+    ripple.className = "tap-ripple";
+    ripple.setAttribute("aria-hidden", "true");
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.setProperty("--ripple-size", `${Math.max(bounds.width, bounds.height) * 2.5}px`);
+    target.append(ripple);
+    ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+
+    sparkDirections.forEach(([dx, dy], index) => {
+        const spark = document.createElement("span");
+        spark.className = "tap-spark";
+        spark.textContent = index % 2 ? "✦" : "✧";
+        spark.setAttribute("aria-hidden", "true");
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        spark.style.setProperty("--spark-x", `${dx}px`);
+        spark.style.setProperty("--spark-y", `${dy}px`);
+        target.append(spark);
+        spark.addEventListener("animationend", () => spark.remove(), { once: true });
+    });
+});
+
+document.body.classList.add("js-motion");
+const revealTargets = document.querySelectorAll(".intro-row, .section-heading, .place-card, .quote-content, .experience-heading, .experience-item, .gallery-tile, .planner-inner, .footer-main");
+const cardTilts = ["-1.5deg", "1.2deg", "-1deg"];
+revealTargets.forEach((element) => {
+    element.classList.add("reveal");
+    if (element.classList.contains("place-card")) {
+        const index = [...document.querySelectorAll(".place-card")].indexOf(element);
+        element.style.setProperty("--card-tilt", cardTilts[index % cardTilts.length]);
+    }
+});
+
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.14, rootMargin: "0px 0px -24px 0px" });
+    revealTargets.forEach((element) => revealObserver.observe(element));
+} else {
+    revealTargets.forEach((element) => element.classList.add("is-visible"));
+}
+
+    </script>
+</body>
+</html>
